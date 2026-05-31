@@ -69,7 +69,7 @@ export default function () {
         </div>
 
         <div className="nav-icons">
-          <span><Link to="/admin"><i className="fa fa-code-compare"></i> Admin</Link></span>
+         
           <span><i className="fa fa-heart"></i> Whishlist  </span>
           <span> <Link to="/cart"> <i className="fa fa-cart-shopping"></i> Cart </Link> </span>
           <span onClick={logout}><i className="fa fa-user"></i> Log Out</span>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 
 function Customer() {
   const [signdata, setsigndata] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [deleteconfirm, setdeleteconfirm] = useState(null);
+  const navigate = useNavigate();
 
   const [fullname, setfullname] = useState("");
   const [email, setemail] = useState("");
@@ -126,9 +128,26 @@ function Customer() {
     setShowForm(true);
   }
 
-  useEffect(() => {
-    datasign();
-  }, []);
+
+
+useEffect(() => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user) {
+    alert("Please login first!");
+    navigate("/dailylogin");
+    return;
+  }
+
+  if (user.role !== "admin") {
+    alert("Access Denied! Admin Only");
+    navigate("/home");
+    return;
+  }
+
+  datasign();
+
+}, [navigate]);
 
   return (
     <>
@@ -143,7 +162,7 @@ function Customer() {
             <Link to="/customers"><li className="sidebar-menu-item active">Customers</li></Link>
             <Link to="/adminproducts"><li className="sidebar-menu-item">Products</li></Link>
             <Link to="/orders"><li className="sidebar-menu-item">Orders</li></Link>
-            <Link to="/collection"><li className="sidebar-menu-item">Collection</li></Link>
+    
           </ul>
         </div>
 

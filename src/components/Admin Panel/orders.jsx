@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 function Orders() {
 
 
 
   const [checkdata, setcheckdata] = useState([]);
+  const navigate = useNavigate();
 
   async function getcheck() {
     const apiurl = await fetch("https://dailyneedbackend-yz7x.onrender.com/api/orders/getorders");
@@ -43,12 +43,24 @@ function Orders() {
     getcheck();
   }
 
-  useEffect(() => {
-    getcheck();
+useEffect(() => {
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  }, [])
+  if (!user) {
+    alert("Please login first!");
+    navigate("/dailylogin");
+    return;
+  }
 
+  if (user.role !== "admin") {
+    alert("Access Denied! Admin Only");
+    navigate("/home");
+    return;
+  }
 
+  getcheck();
+
+}, [navigate]);
 
 
   return (
@@ -74,9 +86,7 @@ function Orders() {
             <Link to="/orders">
               <li className="admin-orders-sidebar-menu-item active">Orders</li>
             </Link>
-            <Link to="/collection">
-              <li className="admin-orders-sidebar-menu-item">Collection</li>
-            </Link>
+           
 
           </ul>
 

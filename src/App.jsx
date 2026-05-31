@@ -16,7 +16,7 @@ import Signup from "./components/dailysignup";
 import Customers from "./components/Admin Panel/customers";
 import Orders from "./components/Admin Panel/orders";
 import Dailyproduct from "./components/Admin Panel/product";
-import Collection from "./components/Admin Panel/collection";
+
 
 
 
@@ -37,7 +37,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/admin" element={<Sidebar />} />
             <Route path="/customers" element={<Customers />} />
-            <Route path="/collection" element={<Collection />} />
+            
             <Route path="/orders" element={<Orders />} />
             <Route path="/adminproducts" element={<Dailyproduct />} />
             <Route path="/product/:id" element={<Productdetail />} />

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Dailyproduct() {
 
   const [showform, setshowform] = useState(false);
+  const navigate = useNavigate();
 
   const [product, setProduct] = useState({
     name: "", url: "", category: "", brand: "", price: "", oldprice: "", rating: "", stock: "", description: "", image: ""
@@ -175,11 +176,24 @@ function Dailyproduct() {
     setpredit(item._id);
     setshowform(true);
   }
-  useEffect(() => {
-    prget();
-  }, [])
+useEffect(() => {
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  if (!user) {
+    alert("Please login first!");
+    navigate("/dailylogin");
+    return;
+  }
 
+  if (user.role !== "admin") {
+    alert("Access Denied! Admin Only");
+    navigate("/home");
+    return;
+  }
+
+  prget();
+
+}, [navigate]);
   return (
     <>
       <div className="product-admin-container">
@@ -194,7 +208,7 @@ function Dailyproduct() {
             <Link to="/customers"><li className="product-sidebar-menu-item">Customers</li></Link>
             <Link to="/adminproducts"><li className="product-sidebar-menu-item active">Products</li></Link>
             <Link to="/orders"><li className="product-sidebar-menu-item">Orders</li></Link>
-            <Link to="/collection"><li className="product-sidebar-menu-item">Collection</li></Link>
+           
           </ul>
         </div>
 
