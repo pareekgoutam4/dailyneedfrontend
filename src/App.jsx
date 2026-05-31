@@ -8,7 +8,7 @@ import Productdetail from "./components/dailyproductdetail";
 import Cart from "./components/cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "./App.css";
+import "./app.css";
 import { CartProvider } from "react-use-cart";
 
 import Sidebar from "./components/Admin Panel/adminnav";
