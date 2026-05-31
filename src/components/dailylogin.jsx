@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import Home from "../pages/Home";
+import Home from "../pages/home";
 import loginimg from "../dailyneedpicture/banner-2 - Copy.5f180836440bacefd545.png"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
