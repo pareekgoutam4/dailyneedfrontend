@@ -6,7 +6,7 @@ import products from "./components/dailyproductdata";
 import Products from "./components/dailyproduct";
 import Productdetail from "./components/dailyproductdetail";
 import Cart from "./components/cart";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {  Routes, Route, HashRouter } from "react-router-dom";
 
 import "./app.css";
 import { CartProvider } from "react-use-cart";
@@ -28,7 +28,7 @@ function App() {
 
     <>
       <CartProvider>
-        <BrowserRouter>
+      <HashRouter>
           <Routes>
             <Route path="/" element={<Signup />} />
             <Route path="/dailysignup" element={<Signup />} />
@@ -43,7 +43,7 @@ function App() {
             <Route path="/product/:id" element={<Productdetail />} />
             <Route path="*" element={<h1>Page Not Found</h1>} />
           </Routes>
-        </BrowserRouter>
+     </HashRouter>
       </CartProvider>
     </>
   );

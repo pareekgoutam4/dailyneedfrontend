@@ -6,11 +6,9 @@ function Sidebar() {
   const [products, setProducts] = useState(0);
   const [orders, setOrders] = useState(0);
   
-  // Isse normal user ko ek second ke liye bhi data ya dashboard nahi dikhega
   const [isAdminChecked, setIsAdminChecked] = useState(false); 
   const navigate = useNavigate();
 
-  // 1. Customers Fetching
   async function getCustomers() {
     try {
       const apiurl = await fetch("https://dailyneedbackend-yz7x.onrender.com/customer/getusers");
@@ -21,7 +19,6 @@ function Sidebar() {
     }
   }
 
-  // 2. Products Fetching
   async function getProducts() {
     try {
       const apiurl = await fetch("https://dailyneedbackend-yz7x.onrender.com/api/products/getproducts");
@@ -32,7 +29,6 @@ function Sidebar() {
     }
   }
 
-  // 3. Orders Fetching
   async function getOrders() {
     try {
       const apiurl = await fetch("https://dailyneedbackend-yz7x.onrender.com/api/orders/getorders");
@@ -43,7 +39,6 @@ function Sidebar() {
     }
   }
 
-  // 🛡️ Aapka bataya hua exact Security Guard Method
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -59,20 +54,16 @@ function Sidebar() {
       return;
     }
 
-    // Agar dono check pass ho gaye (Matlab user Admin hai)
     getCustomers();
     getProducts();
-    // getExtraDashboardData(); // Agar ye function aapke paas hai toh ise uncomment kar lena
 
-    setIsAdminChecked(true); // Isse page render hone ke liye allow ho jayega
+    setIsAdminChecked(true); 
   }, [navigate]);
 
-  // Jab tak check chal raha hai, screen par kuch secret leak nahi hoga
   if (!isAdminChecked) {
-    return null; // Ya aap yahan loading spinner dikha sakte ho
+    return null; 
   }
 
-  // Ab sirf Admin hi is HTML ko dekh payega
   return (
     <>
       <div className="admin-dashboard">
